@@ -1,11 +1,11 @@
 const fs = require('fs');
 
-async function createScheduledEvent(guild, name, description, startTime, endTime) {
+async function createScheduledEvent(guild, startTime, endTime) {
     
     const event = await guild.scheduledEvents.create({
         
-        name: `${name}`,
-        description: `${description}`,
+        name: `Journée Portes Ouvertes - ${startTime.toLocaleDateString()}`,
+        description: `**Découvrez notre École Informatique ENIGMA lors de notre Journée Portes Ouvertes !**\n\n*Ce qui vous attend à notre JPO :*\n\n> 🌟 Rencontres avec nos étudiants : Partagez un moment convivial avec ceux qui vivent déjà l'expérience ENIGMA. Ils répondront à toutes vos questions sur nos programmes, nos projets et la vie étudiante.\n\n> 🎓 Présentation de nos Bachelors et Mastères : Découvrez nos différents cycles, conçus pour répondre aux exigences du marché de l'emploi, avec des spécialisations variées et un accompagnement personnalisé.\n\n> 👩‍🏫 Rencontrez notre équipe pédagogique : Discutez avec notre équipe pédagogique passionnée, prête à vous accompagner dans votre projet professionnel et à vous faire découvrir leur approche innovante de la formation.\n\n> 🏢 Visitez nos locaux à EuraTechnologies : Plongez dans un environnement moderne, inspirant et adapté aux défis de l'informatique d'aujourd'hui et de demain.\n\n👉 [Inscrivez-vous dès maintenant](https://www.enigma-school.com/evenements/)`,
         scheduledStartTime: startTime, 
         scheduledEndTime: endTime,   
         privacyLevel: 2,
@@ -16,8 +16,6 @@ async function createScheduledEvent(guild, name, description, startTime, endTime
 
     const imageBuffer = fs.readFileSync('C:/Users/hugog/Dev/Projects/ENIGMA-School Discord Bot/resources/assets/test.png'); 
     await event.edit({ image: imageBuffer });
-
-    console.log(`Événement créé : ${event.name} (ID : ${event.id})`);
 
 }
 
