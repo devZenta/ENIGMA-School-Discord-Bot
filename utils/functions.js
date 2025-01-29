@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+require('dotenv').config();
+
 async function createScheduledEvent(guild, startTime, endTime) {
     
     const event = await guild.scheduledEvents.create({
@@ -16,6 +18,8 @@ async function createScheduledEvent(guild, startTime, endTime) {
 
     const imageBuffer = fs.readFileSync('C:/Users/hugog/Dev/Projects/ENIGMA-School Discord Bot/resources/assets/test.png'); 
     await event.edit({ image: imageBuffer });
+
+    return event;
 
 }
 
