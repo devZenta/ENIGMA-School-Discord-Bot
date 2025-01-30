@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 require('dotenv').config();
 
@@ -16,7 +17,8 @@ async function createScheduledEvent(guild, startTime, endTime) {
 
     });
 
-    const imageBuffer = fs.readFileSync('C:/Users/hugog/Dev/Projects/ENIGMA-School Discord Bot/resources/assets/test.png'); 
+    const imagePath = path.join(__dirname, '../resources/assets/back_screen_event.png');
+    const imageBuffer = fs.readFileSync(imagePath);
     await event.edit({ image: imageBuffer });
 
     return event;

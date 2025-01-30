@@ -27,7 +27,7 @@ module.exports = {
 
         if (isNaN(startTime) || isNaN(endTime)) {
 
-            const codeBlockErrorMessage = codeBlock(`⚠️ Error : [ Format de date invalide. Utilisez YYYY-MM-DD HH:mm ]`);
+            const codeBlockErrorMessage = codeBlock(`Error : [ Format de date invalide. Utilisez YYYY-MM-DD HH:mm ]`);
 
             const ErrorEmbed = new EmbedBuilder()
             .setColor("Red")
@@ -47,7 +47,7 @@ module.exports = {
 
         if (startTime <= now) {
 
-            const codeBlockErrorMessage = codeBlock(`⚠️ Error : [ La date de début doit être dans le futur ]`);
+            const codeBlockErrorMessage = codeBlock(`Error : [ La date de début doit être dans le futur ]`);
 
             const ErrorEmbed = new EmbedBuilder()
             .setColor("Red")
@@ -67,7 +67,7 @@ module.exports = {
 
         if (endTime <= startTime) {
 
-            const codeBlockErrorMessage = codeBlock(`⚠️ Error : [ La date de fin doit être après la date de début ]`);
+            const codeBlockErrorMessage = codeBlock(`Error : [ La date de fin doit être après la date de début ]`);
 
             const ErrorEmbed = new EmbedBuilder()
             .setColor("Red")
@@ -85,6 +85,27 @@ module.exports = {
             return;
         }
 
+        if (!interaction.member.permissions.has('KICK_MEMBERS')) {
+
+            const codeBlockErrorMessage = codeBlock(`Error : [ Vous n\'avez pas la permission d\'utiliser cette commande ]`);
+
+            const ErrorEmbed = new EmbedBuilder()
+            .setColor("Red")
+            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.LOGO_URL })
+            .setDescription(`${codeBlockErrorMessage}`)
+            .setTimestamp()
+	        .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
+            
+            await interaction.reply({ 
+                content: `${interaction.user}`, 
+                embeds: [ErrorEmbed],
+                ephemeral: true 
+            });
+
+            return;
+
+        }
+
         try {
 
             const event = await createScheduledEvent(guild, startTime, endTime);
@@ -95,12 +116,21 @@ module.exports = {
 
             if (logChannel) {
 
-                const codeBlockLogMessage = codeBlock(`⚙️ Logs : [ Événement créé avec succès par ${interaction.user.tag} ]`);
+                const options = { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric', 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                };
+                
+                const formattedStartTime = new Date(startTime).toLocaleString('fr-FR', options);
+                const formattedEndTime = new Date(endTime).toLocaleString('fr-FR', options);
 
                 const logEmbed = new EmbedBuilder()
                 .setColor("Grey")
                 .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.LOGO_URL })
-                .setDescription(`${codeBlockLogMessage}`)
+                .setDescription(`**__Logs :__** \n\n> **Utilisateur :**\n> Événement créé avec succès par : ${interaction.user.tag}\n> Id : ${interaction.user.id}\n\n> **Événement :**\n> Nom : ${event.name}\n> Id : ${event.id}\n> Début : ${formattedStartTime}\n> Fin : ${formattedEndTime}\n\n${eventUrl}\n\n*Ce message a été créé dans le but de maintenir la sécurité de notre Discord.*`)
                 .setTimestamp()
                 .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
         
@@ -108,7 +138,7 @@ module.exports = {
             }
 
             const goToLog = new ButtonBuilder()
-			.setLabel('Voir la log')
+			.setLabel('Logs')
             .setURL(logMessage.url)
 		    .setStyle(ButtonStyle.Link);
 
@@ -118,14 +148,14 @@ module.exports = {
             if (announcementsChannel) {
 
                 const goToEvent = new ButtonBuilder()
-			    .setLabel('Voir la jpo')
+			    .setLabel('JPO')
                 .setURL(eventUrl)
 		        .setStyle(ButtonStyle.Link);
 
                 const rowAnnouncementsChannel = new ActionRowBuilder()
                 .addComponents(goToEvent);
 
-                const codeBlockAnnouncementsMessage = codeBlock(`⚙️ Logs : [ Événement créé avec succès par ${interaction.user} ]`);
+                const codeBlockAnnouncementsMessage = codeBlock(`Logs : [ Événement créé avec succès par ${interaction.user} ]`);
 
                 const announcementsEmbed = new EmbedBuilder()
                 .setColor("White")
@@ -137,20 +167,23 @@ module.exports = {
                 announcementsMessage = await announcementsChannel.send({ embeds: [announcementsEmbed], components: [rowAnnouncementsChannel] });
             }
 
+            const goToEvent = new ButtonBuilder()
+			.setLabel('JPO')
+            .setURL(eventUrl)
+		    .setStyle(ButtonStyle.Link);
+
             const goToAnnouncements = new ButtonBuilder()
-			.setLabel('Voir l\'annonce')
+			.setLabel('Annonces')
             .setURL(announcementsMessage.url)
 		    .setStyle(ButtonStyle.Link);
 
             const row = new ActionRowBuilder()
-            .addComponents(goToAnnouncements, goToLog);
-
-            const codeBlockTestMessage = codeBlock(`: [ test ]`);
+            .addComponents(goToAnnouncements, goToLog, goToEvent);
 
             const confirmCreationEventEmbed = new EmbedBuilder()
             .setColor("Green")
             .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.LOGO_URL })
-            .setDescription(`${codeBlockTestMessage}`)
+            .setDescription(`**__Informations :__**\n\n> ✅ **Votre événement a été créé avec succès.**\n\n*Vous pouvez utiliser les boutons ci-dessous pour accéder aux différentes sections.*`)
             .setTimestamp()
             .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
                 
@@ -158,13 +191,14 @@ module.exports = {
                 content: `${interaction.user}`,
                 embeds: [confirmCreationEventEmbed],
                 components: [row],
+                ephemeral: true
             });
            
         } catch (error) {
 
             console.log(error);
 
-            const codeBlockErrorMessage = codeBlock(`⚠️ Error : [ ${error.message} ]`);
+            const codeBlockErrorMessage = codeBlock(`Error : [ ${error.message} ]`);
             
             const ErrorEmbed = new EmbedBuilder()
             .setColor("Red")
