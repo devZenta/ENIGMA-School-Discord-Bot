@@ -164,7 +164,11 @@ module.exports = {
                 .setTimestamp()
                 .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
         
-                announcementsMessage = await announcementsChannel.send({ embeds: [announcementsEmbed], components: [rowAnnouncementsChannel] });
+                announcementsMessage = await announcementsChannel.send({ 
+                    content: `@everyone`,
+                    embeds: [announcementsEmbed],  
+                    components: [rowAnnouncementsChannel] 
+                });
             }
 
             const goToEvent = new ButtonBuilder()
