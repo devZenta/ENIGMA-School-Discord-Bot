@@ -147,6 +147,8 @@ module.exports = {
 
             if (announcementsChannel) {
 
+                const roleId = process.env.NOTIFICATION_ROLE_ID;
+
                 const goToEvent = new ButtonBuilder()
 			    .setLabel('JPO')
                 .setURL(eventUrl)
@@ -165,7 +167,7 @@ module.exports = {
                 .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
         
                 announcementsMessage = await announcementsChannel.send({ 
-                    content: `@everyone`,
+                    content: `<@&${roleId}>`,
                     embeds: [announcementsEmbed],  
                     components: [rowAnnouncementsChannel] 
                 });
@@ -195,7 +197,6 @@ module.exports = {
                 content: `${interaction.user}`,
                 embeds: [confirmCreationEventEmbed],
                 components: [row],
-                ephemeral: true
             });
            
         } catch (error) {
