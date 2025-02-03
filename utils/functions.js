@@ -17,7 +17,7 @@ async function createScheduledEvent(guild, startTime, endTime) {
 
     });
 
-    const imagePath = path.join(__dirname, '../resources/assets/back_screen_event.png');
+    const imagePath = path.join(__dirname, '../resources/assets/event_back_screen.png');
     const imageBuffer = fs.readFileSync(imagePath);
     await event.edit({ image: imageBuffer });
 
