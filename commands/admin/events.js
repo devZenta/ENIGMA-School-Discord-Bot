@@ -31,7 +31,7 @@ module.exports = {
 
             const ErrorEmbed = new EmbedBuilder()
             .setColor("Red")
-            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.LOGO_URL })
+            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.ENIGMA_SITE })
             .setDescription(`${codeBlockErrorMessage}`)
             .setTimestamp()
 	        .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
@@ -51,7 +51,7 @@ module.exports = {
 
             const ErrorEmbed = new EmbedBuilder()
             .setColor("Red")
-            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.LOGO_URL })
+            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.ENIGMA_SITE })
             .setDescription(`${codeBlockErrorMessage}`)
             .setTimestamp()
 	        .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
@@ -71,7 +71,7 @@ module.exports = {
 
             const ErrorEmbed = new EmbedBuilder()
             .setColor("Red")
-            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.LOGO_URL })
+            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.ENIGMA_SITE })
             .setDescription(`${codeBlockErrorMessage}`)
             .setTimestamp()
 	        .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
@@ -91,7 +91,7 @@ module.exports = {
 
             const ErrorEmbed = new EmbedBuilder()
             .setColor("Red")
-            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.LOGO_URL })
+            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.ENIGMA_SITE })
             .setDescription(`${codeBlockErrorMessage}`)
             .setTimestamp()
 	        .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
@@ -129,7 +129,7 @@ module.exports = {
 
                 const logEmbed = new EmbedBuilder()
                 .setColor("Grey")
-                .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.LOGO_URL })
+                .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.ENIGMA_SITE })
                 .setDescription(`**__Logs :__** \n\n> **Utilisateur :**\n> Événement créé avec succès par : ${interaction.user.tag}\n> Id : ${interaction.user.id}\n\n> **Événement :**\n> Nom : ${event.name}\n> Id : ${event.id}\n> Début : ${formattedStartTime}\n> Fin : ${formattedEndTime}\n\n${eventUrl}\n\n*Ce message a été créé afin d'assurer la sécurité de notre serveur Discord et de permettre le suivi des actions effectuées.*`)
                 .setTimestamp()
                 .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
@@ -161,7 +161,7 @@ module.exports = {
 
                 const announcementsEmbed = new EmbedBuilder()
                 .setColor("White")
-                .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.LOGO_URL })
+                .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.ENIGMA_SITE })
                 .setDescription(`${codeBlockAnnouncementsMessage}`)
                 .setTimestamp()
                 .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
@@ -188,7 +188,7 @@ module.exports = {
 
             const confirmCreationEventEmbed = new EmbedBuilder()
             .setColor("Green")
-            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.LOGO_URL })
+            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.ENIGMA_SITE })
             .setDescription(`**__Informations :__**\n\n> ✅ **Votre événement a été créé avec succès.**\n\n*Vous pouvez utiliser les boutons ci-dessous pour accéder aux différentes sections.*`)
             .setTimestamp()
             .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
@@ -207,7 +207,7 @@ module.exports = {
             
             const ErrorEmbed = new EmbedBuilder()
             .setColor("Red")
-            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.LOGO_URL })
+            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.ENIGMA_SITE })
             .setDescription(`${codeBlockErrorMessage}`)
             .setTimestamp()
             .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
