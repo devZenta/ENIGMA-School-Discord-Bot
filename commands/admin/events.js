@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, codeBlock } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, codeBlock, PermissionFlagsBits } = require('discord.js');
 const { createScheduledEvent } = require('../../utils/functions.js');
 
 module.exports = {
@@ -171,6 +171,8 @@ module.exports = {
                     embeds: [announcementsEmbed],  
                     components: [rowAnnouncementsChannel] 
                 });
+
+                announcementsMessage.react('👍');
             }
 
             const goToEvent = new ButtonBuilder()
