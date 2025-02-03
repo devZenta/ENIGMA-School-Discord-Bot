@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, codeBlock, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, codeBlock, PermissionFlagsBits, InteractionContextType } = require('discord.js');
 const { createScheduledEvent } = require('../../utils/functions.js');
 
 module.exports = {
@@ -91,6 +91,8 @@ module.exports = {
 
             const event = await createScheduledEvent(guild, startTime, endTime);
             const eventUrl = event.url;
+            let formattedStartTime;
+            let formattedEndTime;
 
             const logChannel = interaction.guild.channels.cache.get(process.env.LOG_CHANNEL_ID);
             let logMessage;
@@ -105,8 +107,8 @@ module.exports = {
                     minute: '2-digit' 
                 };
                 
-                const formattedStartTime = new Date(startTime).toLocaleString('fr-FR', options);
-                const formattedEndTime = new Date(endTime).toLocaleString('fr-FR', options);
+                formattedStartTime = new Date(startTime).toLocaleString('fr-FR', options);
+                formattedEndTime = new Date(endTime).toLocaleString('fr-FR', options);
 
                 const logEmbed = new EmbedBuilder()
                 .setColor("Grey")
@@ -135,15 +137,34 @@ module.exports = {
                 .setURL(eventUrl)
 		        .setStyle(ButtonStyle.Link);
 
-                const rowAnnouncementsChannel = new ActionRowBuilder()
-                .addComponents(goToEvent);
+                const goToX = new ButtonBuilder()
+			    .setLabel('X')
+                .setURL('https://x.com/EnigmaLille')
+		        .setStyle(ButtonStyle.Link);
 
-                const codeBlockAnnouncementsMessage = codeBlock(`Logs : [ Événement créé avec succès par ${interaction.user} ]`);
+                const goToLinkedin = new ButtonBuilder()
+			    .setLabel('Linkedin')
+                .setURL('https://www.linkedin.com/company/enigma-school/')
+		        .setStyle(ButtonStyle.Link);
+
+                const goToFacebook = new ButtonBuilder()
+			    .setLabel('Facebook')
+                .setURL('https://www.facebook.com/enigma.school.lille')
+		        .setStyle(ButtonStyle.Link);
+
+                const goToInstagram = new ButtonBuilder()
+			    .setLabel('Instagram')
+                .setURL('https://www.instagram.com/enigma.school/')
+		        .setStyle(ButtonStyle.Link);
+
+                const rowAnnouncementsChannel = new ActionRowBuilder()
+                .addComponents(goToEvent, goToX, goToLinkedin, goToFacebook, goToInstagram);
 
                 const announcementsEmbed = new EmbedBuilder()
                 .setColor("White")
                 .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.ENIGMA_SITE })
-                .setDescription(`${codeBlockAnnouncementsMessage}`)
+                .setTitle(`📢 **Nouvelle Journée Portes Ouvertes** : ${startTime.toLocaleDateString()} 📢`)
+                .setDescription(`**La Journée Portes Ouvertes chez ENIGMA est de retour !**\n\n*📆 Ce ${formattedStartTime}, de 10h à 16h, ENIGMA t'accueille dans ses locaux à Euratechnologies pour une Journée Portes Ouvertes exceptionnelle.*\n\n**Pourquoi venir à notre Journée Portes Ouvertes ENIGMA ?\n\n👉 [Inscrivez-vous dès maintenant](https://www.enigma-school.com/evenements/)\n\n**PS : l'inscription est obligatoire**`)
                 .setTimestamp()
                 .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
         
