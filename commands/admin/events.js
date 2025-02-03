@@ -13,7 +13,9 @@ module.exports = {
         .addStringOption(option =>
             option.setName('date-fin')
                 .setDescription('Date et heure de fin (YYYY-MM-DD HH:mm)')
-                .setRequired(true)),
+                .setRequired(true))
+        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+        .setContexts(InteractionContextType.Guild),
 	async execute(interaction) {
 
         const startTimeInput = interaction.options.getString('date-debut');
@@ -83,27 +85,6 @@ module.exports = {
             });
 
             return;
-        }
-
-        if (!interaction.member.permissions.has('KICK_MEMBERS')) {
-
-            const codeBlockErrorMessage = codeBlock(`Error : [ Vous n\'avez pas la permission d\'utiliser cette commande ]`);
-
-            const ErrorEmbed = new EmbedBuilder()
-            .setColor("Red")
-            .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.ENIGMA_SITE })
-            .setDescription(`${codeBlockErrorMessage}`)
-            .setTimestamp()
-	        .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
-            
-            await interaction.reply({ 
-                content: `${interaction.user}`, 
-                embeds: [ErrorEmbed],
-                ephemeral: true 
-            });
-
-            return;
-
         }
 
         try {
