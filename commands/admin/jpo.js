@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, codeBlock, PermissionFlagsBits, InteractionContextType } = require('discord.js');
-const { createScheduledEvent } = require('../../utils/functions.js');
+const { createScheduledJpo } = require('../../utils/functions.js');
 
 module.exports = {
 
@@ -89,7 +89,7 @@ module.exports = {
 
         try {
 
-            const event = await createScheduledEvent(guild, startTime, endTime);
+            const event = await createScheduledJpo(guild, startTime, endTime);
             const eventUrl = event.url;
             let formattedStartTime;
             let formattedEndTime;
