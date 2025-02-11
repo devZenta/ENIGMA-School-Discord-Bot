@@ -29,8 +29,8 @@ async function createScheduledEvent(guild, startTime, endTime) {
     
     const event = await guild.scheduledEvents.create({
         
-        name: `Ton avenir ! Parlons-en ! 📢 - ${startTime.toLocaleDateString()}`,
-        description: `**📅 Jeudi 13 février :**\n\n***Tu es en Bac+3 ou Bac+4 et tu te demandes quelle suite donner à ton parcours ? 🤔***\n\n*🎓 Viens découvrir notre école et plonge-toi dans une journée immersive aux côtés de nos étudiants. Profite de cette opportunité pour poser toutes tes questions ❓ et obtenir des conseils sur ton avenir académique et professionnel. 🚀*\n\n✨ Au programme de cette journée :\n\n 🔸 Échanges avec nos étudiants et professeurs\n\n 🔸 Découverte de nos formations\n\n 🔸 Participer aux cours\n\n 🔸 Visite de l'école\n\n**👉 [Inscrivez-vous dès maintenant](https://www.enigma-school.com/evenements/)**`,
+        name: `📱 Atelier Dev Mobile - ${startTime.toLocaleDateString()}`,
+        description: `**📅 Du 18 au 21 février :**\n\n***Tu es en Bac+3 ou Bac+4 et tu te demandes quelle école choisir pour la suite de ton parcours ? 🤔***\n\n*📱 Viens découvrir ENIGMA de l'intérieur à travers un atelier 100% dédié au développement mobile ! Pendant 4 jours, participe à des cours immersifs et vis l'expérience étudiante en conditions réelles.*\n\n✨ Au programme :\n\n 🔸 Apprendre les bases du développement mobile\n\n 🔸 Participer à des cours comme un étudiant de l'école\n\n 🔸 Échanger avec nos professeurs et étudiants\n\n 🔸 Découvrir notre pédagogie et notre campus\n\n🚀 **Une immersion totale pour voir si ENIGMA est faite pour toi !**\n\n**👉 [Inscrivez-vous dès maintenant](https://www.enigma-school.com/evenements/)**`,
         scheduledStartTime: startTime, 
         scheduledEndTime: endTime,   
         privacyLevel: 2,

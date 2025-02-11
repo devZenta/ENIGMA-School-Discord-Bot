@@ -163,8 +163,8 @@ module.exports = {
                 const announcementsEmbed = new EmbedBuilder()
                 .setColor("White")
                 .setAuthor({ name: 'ENIGMA-School', iconURL: process.env.LOGO_URL, url: process.env.ENIGMA_SITE })
-                .setTitle(`📢 **Ton avenir ! Parlons-en !** : ${startTime.toLocaleDateString()} 📢`)
-                .setDescription(`**Ton avenir commence ici avec ENIGMA !**\n\n*📆 Ce ${formattedStartTime}, ENIGMA t'ouvre ses portes pour une journée immersive unique.*\n\n**Pourquoi participer ?**\n\n*C'est __l'opportunité parfaite__ pour découvrir notre école, explorer les **spécialisations qui te mèneront vers ta carrière après Bac+3/Bac+4**, et participer à nos **cours pour te plonger directement dans notre méthode d'enseignement.***\n\n🚀 **Ne laisse pas passer cette chance de poser toutes tes questions et de préparer ton futur !**\n\n***__PS : l'inscription est obligatoire__***\n\n**👉 [Inscris-toi ici](https://www.enigma-school.com/evenements/)**`)
+                .setTitle(`📢 **📱 Atelier Dev Mobile** : ${startTime.toLocaleDateString()} 📢`)
+                .setDescription(`**Étudiant en Bac+3 ou Bac+4 ? Découvre ENIGMA à travers le développement mobile !**\n\n*📆 Du 18 au 21 février, plonge dans l'univers du développement mobile et vis une expérience immersive unique au sein de notre école.*\n\n**Pourquoi participer ?**\n\n***Tu es en Bac+3/Bac+4 et tu réfléchis à la suite de ton parcours ?** Cet atelier est l'opportunité parfaite pour découvrir notre pédagogie innovante, explorer le développement mobile et voir __concrètement comment se déroulent les cours chez ENIGMA.__*\n\n🚀 **Pendant 4 jours, viens coder, échanger avec nos étudiants et professeurs, et ressentir l'ambiance de l'école comme si tu y étais déjà !**\n\n***__PS : l'inscription est obligatoire__***\n\n**👉 [Inscris-toi ici](https://www.enigma-school.com/evenements/)**`)
                 .setTimestamp()
                 .setFooter({ text: 'Enigma School - l\'Ecole Supérieure des Sciences de l\'Informatique de Lille' });
         
