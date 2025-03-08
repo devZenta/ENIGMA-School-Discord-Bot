@@ -34,7 +34,7 @@ module.exports = {
         let index = 0;
         setInterval(() => {
             client.user.setActivity(status[index], { 
-                type: isProdEnvironment ? ActivityType.Playing : ActivityType.Watching 
+                type: isProdEnvironment ? ActivityType.Playing : ActivityType.Playing,
             });
             index = (index + 1) % status.length;
         }, 10000);
